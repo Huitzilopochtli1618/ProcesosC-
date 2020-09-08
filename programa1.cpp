@@ -10,12 +10,13 @@ using namespace std;
 void esperarHijos();
 pid_t crearGeneraciones(int);
 pid_t crearHijosMismoPadre(int);
+void crearArbolBinario(int, int);
 
 
 
 int main(){
 
-
+	crearArbolBinario(5, 0);
 	sleep(12);
 	esperarHijos();
 	
@@ -54,14 +55,23 @@ void esperarHijos(){
 	}
 }
 
-pid_t crearArbolBinario(int niveles, int cont){
+void crearArbolBinario(int niveles, int cont){
 	if(niveles==1){
-		return -1;
+		return;
 	}
 	if(niveles==2){
-		return crearHijosMismoPadre(2);
+		crearHijosMismoPadre(2);
+		return;
 	}
-	return p;
+
+	if(cont<niveles-1){
+		if(crearHijosMismoPadre(2)==0){
+			crearArbolBinario(niveles, cont+1);
+		}
+	}
+	
+	return;
 }
+
 
 
