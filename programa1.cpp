@@ -13,17 +13,30 @@ pid_t crearGeneraciones(int);
 
 int main(){
 
+	crearGeneraciones(5);
 
+	esperarHijos();
+	sleep(8);
 	
 }
 
 
 
 pid_t crearGeneraciones(int generaciones){
-	pid_t p=1;
+	pid_t p=0;
 	for(int i=1; i<=generaciones;i++){
-		p=fork();
+		if(p==0){
+			p=fork();
+		}
 	}
 	return p;
+}
+
+void esperarHijos(){
+	int resultado;
+	pid_t pidHijo= wait(&resultado);
+	while(pidHijo != -1){
+		pidHijo=wait(&resultado);
+	}
 }
 
