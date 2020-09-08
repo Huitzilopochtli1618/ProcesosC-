@@ -12,9 +12,9 @@ pid_t crearGeneraciones(int);
 pid_t crearHijosMismoPadre(int);
 
 
+
 int main(){
 
-	crearHijosMismoPadre(5);
 
 	sleep(12);
 	esperarHijos();
@@ -45,6 +45,7 @@ pid_t crearHijosMismoPadre(int hijos){
 }
 
 
+
 void esperarHijos(){
 	int resultado;
 	pid_t pidHijo= wait(&resultado);
@@ -52,4 +53,15 @@ void esperarHijos(){
 		pidHijo=wait(&resultado);
 	}
 }
+
+pid_t crearArbolBinario(int niveles, int cont){
+	if(niveles==1){
+		return -1;
+	}
+	if(niveles==2){
+		return crearHijosMismoPadre(2);
+	}
+	return p;
+}
+
 
