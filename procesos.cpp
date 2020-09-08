@@ -4,18 +4,14 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-
-
 void esperarHijos();
 pid_t crearGeneraciones(int);
 pid_t crearHijosMismoPadre(int);
 void crearArbolBinario(int, int);
 
-
 int main(){
 
 	int eleccion;
-
 
 	printf("--------------------------------\n");
 	printf("Seleccione una opcion\n");
@@ -23,7 +19,6 @@ int main(){
 	printf("\t2 Lista de procesos cada uno con un descendiente\n");
 	printf("\t3 Arbol binario de procesos\n\n\t");
 	
-
 	scanf("%d", &eleccion);
 	int e;
 	switch(eleccion){
@@ -71,7 +66,6 @@ pid_t crearHijosMismoPadre(int hijos){
 			p=fork();
 		}
 	}
-
 	return p;
 }
 
