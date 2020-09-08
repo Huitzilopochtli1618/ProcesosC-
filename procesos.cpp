@@ -4,7 +4,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-using namespace std;
+
 
 void esperarHijos();
 pid_t crearGeneraciones(int);
