@@ -2,6 +2,7 @@
 #include <sys/types.h> 
 #include <unistd.h> 
 #include <sys/wait.h>
+//librerias necesarias para fork y wait
 #include <stdio.h>
 
 void esperarHijos();
@@ -10,6 +11,8 @@ pid_t crearHijosMismoPadre(int);
 void crearArbolBinario(int, int);
 
 int main(){
+
+	//Menu-------------------------------------------------------------------------------------
 
 	int eleccion;
 
@@ -40,16 +43,18 @@ int main(){
 		case 3:
 			printf("\n¿Cuantos niveles desea que tenga el arbol binario ?\n");
 			scanf("%d", &e);
-			printf("\n creado arbol...\nen otra terminal use el comando ps lf\n\n");
+			printf("\n creado arbol...\nen otra terminal use el comando ps lf\n\n");				
 			crearArbolBinario(e, 0);
 			break;
 	}
+	//-----------------------------------------------------------------------------------------------
 	sleep(10);
 	esperarHijos();	
 }
 
 
 pid_t crearGeneraciones(int generaciones){
+	//Crea cadenas de procesos, mediante hijos
 	pid_t p=0;
 	for(int i=1; i<generaciones;i++){
 		if(p==0){
@@ -60,6 +65,7 @@ pid_t crearGeneraciones(int generaciones){
 }
 
 pid_t crearHijosMismoPadre(int hijos){
+	//Crea abanico de procesos
 	pid_t p=1;
 	for(int i=1;i<=hijos;i++){
 		if(p>0){
@@ -69,16 +75,8 @@ pid_t crearHijosMismoPadre(int hijos){
 	return p;
 }
 
-
-void esperarHijos(){
-	int resultado;
-	pid_t pidHijo= wait(&resultado);
-	while(pidHijo != -1){
-		pidHijo=wait(&resultado);
-	}
-}
-
 void crearArbolBinario(int niveles, int cont){
+	//Crea arbol binario de procesos con n niveles
 	if(niveles==1){
 		return;
 	}
@@ -93,6 +91,16 @@ void crearArbolBinario(int niveles, int cont){
 	}	
 	return;
 }
+
+void esperarHijos(){
+	//espera a todos sus hijos
+	int resultado;
+	pid_t pidHijo= wait(&resultado);
+	while(pidHijo != -1){
+		pidHijo=wait(&resultado);
+	}
+}
+
 
 
 
