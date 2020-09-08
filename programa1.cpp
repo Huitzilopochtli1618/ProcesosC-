@@ -9,14 +9,15 @@ using namespace std;
 
 void esperarHijos();
 pid_t crearGeneraciones(int);
+pid_t crearHijosMismoPadre(int);
 
 
 int main(){
 
-	crearGeneraciones(5);
+	crearHijosMismoPadre(5);
 
+	sleep(12);
 	esperarHijos();
-	sleep(8);
 	
 }
 
@@ -31,6 +32,18 @@ pid_t crearGeneraciones(int generaciones){
 	}
 	return p;
 }
+
+pid_t crearHijosMismoPadre(int hijos){
+	pid_t p=1;
+	for(int i=1;i<=hijos;i++){
+		if(p>0){
+			p=fork();
+		}
+	}
+
+	return p;
+}
+
 
 void esperarHijos(){
 	int resultado;
