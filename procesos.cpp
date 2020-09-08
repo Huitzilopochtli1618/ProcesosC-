@@ -3,7 +3,6 @@
 #include <unistd.h> 
 #include <sys/wait.h>
 #include <stdio.h>
-#include <iostream>
 
 using namespace std;
 
@@ -11,7 +10,6 @@ void esperarHijos();
 pid_t crearGeneraciones(int);
 pid_t crearHijosMismoPadre(int);
 void crearArbolBinario(int, int);
-
 
 
 int main(){
@@ -51,14 +49,9 @@ int main(){
 			crearArbolBinario(e, 0);
 			break;
 	}
-	
-
 	sleep(10);
-	esperarHijos();
-	
-	
+	esperarHijos();	
 }
-
 
 
 pid_t crearGeneraciones(int generaciones){
@@ -83,7 +76,6 @@ pid_t crearHijosMismoPadre(int hijos){
 }
 
 
-
 void esperarHijos(){
 	int resultado;
 	pid_t pidHijo= wait(&resultado);
@@ -100,13 +92,11 @@ void crearArbolBinario(int niveles, int cont){
 		crearHijosMismoPadre(2);
 		return;
 	}
-
 	if(cont<niveles-1){
 		if(crearHijosMismoPadre(2)==0){
 			crearArbolBinario(niveles, cont+1);
 		}
-	}
-	
+	}	
 	return;
 }
 
